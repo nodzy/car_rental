@@ -1,0 +1,40 @@
+<%= form_for([@car, @booking]) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :from %><br>
+   <%= f.text_field :from , placeholder: "Select date"  %>
+
+  </div>
+  <div class="field">
+    <%= f.label :to %><br>
+    <%= f.text_field :to , placeholder: "Select date" %>
+
+  </div>
+  <div class="field">
+    <%= f.label :client %><br>
+    <%= f.text_field :client %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :place %><br>
+    <%= f.select :place, options_for_select(['A', 'B', 'C']) %>
+  </div>
+  <%= f.hidden_field :car_id, :value => params[:car_id]%>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Cars</h1>
+
+<table class="table">
+  <thead>
+
+  <div class="row">
+<div class="col-md-12">
+    <tr>
+	  <th>Photo</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Class</th>
+      <th>Price</th>
+	  <th>Status</th>
+	  <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+	     <% @cars.each do |car| %>
+	<% if car.available? %>
+	
+      <tr class="success">
+	  
+	  <td><%= image_tag car.picture.thumb.url if car.picture? %></td>
+        <td><%= car.name %></td>
+        <td><%= car.description %></td>
+        <td><%= car.comfort_class %></td>
+        <td><%= car.price %></td>
+		<% if car.bookings.any? %>
+		<td>Available to <%= car.bookings.order(:from).first.from %></td>
+		<% else %>
+		<td>Available! </td>
+		
+		<% end %>
+		 <td><%= link_to 'Book', new_car_booking_path(car) %></td>
+        <td><%= link_to 'Show', car_bookings_path(car) %></td>
+        <td><%= link_to 'Edit', edit_car_path(car) %></td>
+        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+	
+
+	  <% else %>
+       
+      <tr class="danger">
+	  <td><%= image_tag car.picture.thumb.url if car.picture? %></td>
+        <td><%= car.name %></td>
+        <td><%= car.description %></td>
+        <td><%= car.comfort_class %></td>
+        <td><%= car.price %></td>
+			<% if car.bookings.any? %>
+		<td><%= car.bookings.order(:from).first.from %> - <%= car.bookings.order(:from).first.to %></td>
+	<% end %>
+		 <td><%= link_to 'Book', new_car_booking_path(car), 'data-no-turbolink' => true  %></td>
+        <td><%= link_to 'Show', car_bookings_path(car) %></td>
+        <td><%= link_to 'Edit', edit_car_path(car) %></td>
+        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+	  
+	   
+	    <% end %>
+		<% end %>
+	   
+  </tbody>
+</table>
+
+<br>
+</div>
+</div>
+<%= link_to 'New Car', new_car_path %>

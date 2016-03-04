@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: 2016-03-02
+  to: 2016-03-02
+  client: MyString
+  phone: MyString
+  place: MyString
+  car_id: 
+
+two:
+  from: 2016-03-02
+  to: 2016-03-02
+  client: MyString
+  phone: MyString
+  place: MyString
+  car_id: 
