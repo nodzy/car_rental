@@ -8,23 +8,37 @@
 </head>
 <body>
 
-<div class="container-fluid">
-<div class="navbar navbar-fixed-top navbar-inverse">
-<a class="navbar-brand" >
-<%= link_to "Home", root_path %>
-</a>
- <ul class="nav navbar-nav navbar-right">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    
+      <a class="navbar-brand"> <%= link_to "WebSiteName", root_path %></a>
    
-  <%= link_to "Signout", destroy_user_session_path, method: :delete %>
-  </ul>
-</div>
-</div>
+    <ul class="nav navbar-nav navbar-right">
+   
+      <li> <%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
+ 
+    </ul>
+  </div>
+</nav>
 
 <div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-12"> Empty row</div>
+  </div>
+
+<div class="row">
+<div class="col-md-4">
+
+<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+	</div>
+</div>  
+
 <div class="row">
 <div class="col-md-12">
-
-
 <%= yield %>
 
 </div>

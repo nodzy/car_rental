@@ -32,7 +32,7 @@
         <td><%= car.comfort_class %></td>
         <td><%= car.price %></td>
 		<% if car.bookings.any? %>
-		<td>Available to <%= car.bookings.order(:from).first.from %></td>
+		<td>Available to <%= car.bookings.order(:starting).first.starting %></td>
 		<% else %>
 		<td>Available! </td>
 		
@@ -53,7 +53,7 @@
         <td><%= car.comfort_class %></td>
         <td><%= car.price %></td>
 			<% if car.bookings.any? %>
-		<td><%= car.bookings.order(:from).first.from %> - <%= car.bookings.order(:from).first.to %></td>
+		<td><%= car.bookings.order(:starting).first.starting %> - <%= car.bookings.order(:starting).first.ending %></td>
 	<% end %>
 		 <td><%= link_to 'Book', new_car_booking_path(car), 'data-no-turbolink' => true  %></td>
         <td><%= link_to 'Show', car_bookings_path(car) %></td>

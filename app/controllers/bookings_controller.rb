@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   # GET /bookings.json
   def index
     @car = Car.find(params[:car_id])
-    @bookings = @car.bookings.order(:from).all
+    @bookings = @car.bookings.order(:starting).all
   end
 
   # GET /bookings/1
@@ -33,7 +33,8 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to root_path, notice: 'Booking was successfully created.' }
+        format.html { redirect_to root_path
+		flash[:success] = 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
@@ -49,8 +50,9 @@ class BookingsController < ApplicationController
 	 @booking = @car.bookings.find(params[:id])
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to car_bookings_path(@car), notice: 'Booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @booking }
+        format.html { redirect_to car_bookings_path(@car)
+		flash[:success] = 'Booking was successfully updated.' }
+        format.json { render :index, status: :ok, location: @booking }
       else
         format.html { render :edit }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -63,8 +65,10 @@ class BookingsController < ApplicationController
   def destroy
      @car=Car.find(params[:car_id])
 	 @booking = @car.bookings.find(params[:id])
+	 @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to car_bookings_path(@car)
+	  flash[:success] = 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,6 +81,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:from, :to, :client, :phone, :place, :car_id)
+      params.require(:booking).permit(:client, :phone, :place, :car_id, :starting, :ending)
     end
 end

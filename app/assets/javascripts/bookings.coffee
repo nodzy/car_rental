@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-$(document).on 'ready page:load', -> $('#booking_from').datepicker({ minDate: 0, maxDate: "+1Y", dateFormat: 'dd-mm-yy'});
+$(document).on 'ready page:load', -> $('#booking_starting').datepicker({ minDate: 0, maxDate: "+1Y", dateFormat: 'yy-mm-dd'});
 	
-$(document).on 'ready page:load', -> $('#booking_to').datepicker({ minDate: 0, maxDate: "+1Y", dateFormat: 'dd-mm-yy'});
+$(document).on 'ready page:load', -> $('#booking_ending').datepicker({ minDate: 0, maxDate: "+1Y", dateFormat: 'yy-mm-dd'});
 	
 	
