@@ -1,8 +1,6 @@
 class Booking < ActiveRecord::Base
   belongs_to :car
 
-
-
   validates :booking_length, inclusion: { in: 1..365, message: 'Choose date between 1 day and 1 year' }
   validates :client, presence: true, length: { maximum: 30 }
   validates :place, presence: true
@@ -10,10 +8,8 @@ class Booking < ActiveRecord::Base
   validate :date_range
 
   def booking_length
-   ending - starting
+    ending - starting
  end
-
-
 
   private
 
@@ -23,12 +19,11 @@ class Booking < ActiveRecord::Base
       car_id, starting, starting,
       starting, ending
     ).empty?
-      errors.add(:base, 'This car is unavailabe in this period.')
+      errors.add(:base, 'Car is unavailable, choose other dates')
        end
   end
 
-
   def self.remove_bookings
-    where { endingo < Date.today }.destroy_all if where { ending < Date.today }
+    where { ending < Date.today }.destroy_all if where { ending < Date.today }
     end
 end
