@@ -22,19 +22,14 @@
   <div class="field">
     <%= f.label :class %><br>
    <%= f.select :comfort_class, options_for_select(['A', 'B', 'C']) %>
-
   </div>
   
-  <span class="picture">
 <%= f.file_field :picture %>
 <label>
        <% if @car.picture? %><%= f.check_box :remove_picture %>
       Remove avatar
 	  <% end %>
     </label>
-  </p>
-</span>
-
   <div class="actions">
     <%= f.submit %>
   </div>
