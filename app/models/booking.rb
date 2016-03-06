@@ -10,7 +10,7 @@ class Booking < ActiveRecord::Base
   validate :date_range
 
   def booking_length
-    self.ending - self.starting
+   ending - starting
  end
 
 
@@ -19,7 +19,7 @@ class Booking < ActiveRecord::Base
 
   def date_range
     unless Booking.where(
-      'car_id==? AND ((starting <= ? AND ending >= ?) OR (starting >= ? AND ending <= ?))',
+      'car_id = AND ((starting <= ? AND ending >= ?) OR (starting >= ? AND ending <= ?))',
       car_id, starting, starting,
       starting, ending
     ).empty?
