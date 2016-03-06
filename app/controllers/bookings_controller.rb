@@ -11,7 +11,6 @@ class BookingsController < ApplicationController
   # GET /bookings/1
   # GET /bookings/1.json
   def show
-
   end
 
   # GET /bookings/new
@@ -22,7 +21,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
-   @car = Car.find(params[:car_id])
+    @car = Car.find(params[:car_id])
   end
 
   # POST /bookings
@@ -33,8 +32,10 @@ class BookingsController < ApplicationController
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to root_path
-		flash[:success] = 'Booking was successfully created.' }
+        format.html do
+          redirect_to root_path
+          flash[:success] = 'Booking was successfully created.'
+        end
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
@@ -46,12 +47,14 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
-     @car=Car.find(params[:car_id])
-	 @booking = @car.bookings.find(params[:id])
+    @car = Car.find(params[:car_id])
+    @booking = @car.bookings.find(params[:id])
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to car_bookings_path(@car)
-		flash[:success] = 'Booking was successfully updated.' }
+        format.html do
+          redirect_to car_bookings_path(@car)
+          flash[:success] = 'Booking was successfully updated.'
+        end
         format.json { render :index, status: :ok, location: @booking }
       else
         format.html { render :edit }
@@ -63,24 +66,27 @@ class BookingsController < ApplicationController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
-     @car=Car.find(params[:car_id])
-	 @booking = @car.bookings.find(params[:id])
-	 @booking.destroy
+    @car = Car.find(params[:car_id])
+    @booking = @car.bookings.find(params[:id])
+    @booking.destroy
     respond_to do |format|
-      format.html { redirect_to car_bookings_path(@car)
-	  flash[:success] = 'Booking was successfully destroyed.' }
+      format.html do
+        redirect_to car_bookings_path(@car)
+        flash[:success] = 'Booking was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def booking_params
-      params.require(:booking).permit(:client, :phone, :place, :car_id, :starting, :ending)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def booking_params
+    params.require(:booking).permit(:client, :phone, :place, :car_id, :starting, :ending)
+  end
 end

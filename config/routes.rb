@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
- devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
+  devise_for :users, class_name: 'FormUser', controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
 
   resources :cars, only: [:index, :new, :create, :edit, :update, :destroy] do
-        resources :bookings, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :bookings, only: [:index, :new, :create, :edit, :update, :destroy]
   end
   root 'cars#index'
 

@@ -11,7 +11,6 @@ class CarsController < ApplicationController
   # GET /cars/1
   # GET /cars/1.json
   def show
-   
     @booking = @car.bookings.build
   end
 
@@ -31,9 +30,10 @@ class CarsController < ApplicationController
 
     respond_to do |format|
       if @car.save
-        format.html { 
-		redirect_to root_path
-		flash[:success] = 'Car was successfully created.' }
+        format.html do
+          redirect_to root_path
+          flash[:success] = 'Car was successfully created.'
+        end
         format.json { render :show, status: :created, location: @car }
       else
         format.html { render :new }
@@ -47,8 +47,10 @@ class CarsController < ApplicationController
   def update
     respond_to do |format|
       if @car.update(car_params)
-        format.html { redirect_to root_path
-		flash[:success] = 'Car was successfully updated.' }
+        format.html do
+          redirect_to root_path
+          flash[:success] = 'Car was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @car }
       else
         format.html { render :edit }
@@ -62,20 +64,23 @@ class CarsController < ApplicationController
   def destroy
     @car.destroy
     respond_to do |format|
-      format.html { redirect_to cars_url 
-	  flash[:success] = 'Car was successfully destroyed.' }
+      format.html do
+        redirect_to cars_url
+        flash[:success] = 'Car was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_car
-      @car = Car.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def car_params
-      params.require(:car).permit(:name, :description, :comfort_class, :price, :picture,:remove_picture)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_car
+    @car = Car.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def car_params
+    params.require(:car).permit(:name, :description, :comfort_class, :price, :picture, :remove_picture)
+  end
 end
