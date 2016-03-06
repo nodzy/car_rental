@@ -1,12 +1,15 @@
 <p id="notice"><%= notice %></p>
-
+    <div class="row">
+<div class="col-md-offset-5">
 <h1>Listing Cars</h1>
+</div>
+</div>
 <%= will_paginate %>
 <table class="table">
   <thead>
 
     <div class="row">
-<div class="col-md-2 col-md-offset-10">
+<div class="col-md-offset-10">
   <%= link_to 'New Car', new_car_path, :class => "btn btn-primary btn-md"%>
 
   </div>
