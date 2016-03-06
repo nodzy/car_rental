@@ -50,7 +50,7 @@ class BookingsController < ApplicationController
     @car = Car.find(params[:car_id])
     @booking = @car.bookings.find(params[:id])
     respond_to do |format|
-      if @booking.update(booking_params)
+      if @booking.update(booking_params_for_edit)
         format.html do
           redirect_to car_bookings_path(@car)
           flash[:success] = 'Booking was successfully updated.'
@@ -88,5 +88,8 @@ class BookingsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def booking_params
     params.require(:booking).permit(:client, :phone, :place, :car_id, :starting, :ending)
+  end
+   def booking_params_for_edit
+    params.require(:booking).permit(:client, :phone, :place, :car_id)
   end
 end
