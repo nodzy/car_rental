@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update, :destroy]
-  before_action :set_car, only: [:index, :new, :create]
+  before_action :set_car, only: [:index, :new, :create, :edit, :update]
 
   # GET /bookings
   # GET /bookings.json
