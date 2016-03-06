@@ -1,10 +1,10 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:edit, :update, :destroy]
+  before_action :set_car, only: [:index, :new, :create]
 
   # GET /bookings
   # GET /bookings.json
   def index
-    @car = Car.find(params[:car_id])
     @bookings = @car.bookings.order(:starting).all
   end
 
@@ -15,19 +15,16 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
-    @car = Car.find(params[:car_id])
     @booking = @car.bookings.build
   end
 
   # GET /bookings/1/edit
   def edit
-    @car = Car.find(params[:car_id])
   end
 
   # POST /bookings
   # POST /bookings.json
   def create
-    @car = Car.find(params[:car_id])
     @booking = @car.bookings.build(booking_params)
 
     respond_to do |format|
@@ -47,10 +44,8 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
-    @car = Car.find(params[:car_id])
-    @booking = @car.bookings.find(params[:id])
     respond_to do |format|
-      if @booking.update(booking_params_for_edit)
+      if @booking.update(booking_params)
         format.html do
           redirect_to car_bookings_path(@car)
           flash[:success] = 'Booking was successfully updated.'
@@ -66,8 +61,6 @@ class BookingsController < ApplicationController
   # DELETE /bookings/1
   # DELETE /bookings/1.json
   def destroy
-    @car = Car.find(params[:car_id])
-    @booking = @car.bookings.find(params[:id])
     @booking.destroy
     respond_to do |format|
       format.html do
@@ -85,11 +78,12 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def set_car
+    @car = Car.find(params[:car_id])
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def booking_params
     params.require(:booking).permit(:client, :phone, :place, :car_id, :starting, :ending)
-  end
-   def booking_params_for_edit
-    params.require(:booking).permit(:client, :phone, :place, :car_id)
   end
 end
