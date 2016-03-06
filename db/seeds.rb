@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Car.create!(name: 'Honda', comfort_class: 'A', description: 'Year: 2015, Engine: 4.7, Horsepower: 449, Fuel: Gasoline', picture: File.open(File.join(Rails.root, "/app/assets/images/#{mercedes}.jpg")))
+Car.create!(name: 'Honda', comfort_class: 'A', description: 'Year: 2015, Engine: 4.7, Horsepower: 449, Fuel: Gasoline', picture: File.open(File.join(Rails.root, "/app/assets/images/mercedes.jpg")))
 
-Car.create!(name: 'Honda', comfort_class: 'B', description: 'Year: 2014, Engine: 1.4, Horsepower: 150, Fuel: Gasoline', picture: File.open(File.join(Rails.root, "/app/assets/images/#{passat}.jpg")))
+Car.create!(name: 'Honda', comfort_class: 'B', description: 'Year: 2014, Engine: 1.4, Horsepower: 150, Fuel: Gasoline', picture: File.open(File.join(Rails.root, "/app/assets/images/passat.jpg")))
 
-Car.create!(name: 'Honda', comfort_class: 'C', description: 'Year: 2014, Engine: 1.1, Horsepower: 54, Fuel: Gasoline', picture: File.open(File.join(Rails.root, "/app/assets/images/#{fiat}.jpg")))
+Car.create!(name: 'Honda', comfort_class: 'C', description: 'Year: 2014, Engine: 1.1, Horsepower: 54, Fuel: Gasoline', picture: File.open(File.join(Rails.root, "/app/assets/images/fiat.jpg")))
 
 4.times do
   3.times do
