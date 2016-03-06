@@ -1,69 +1,65 @@
 <p id="notice"><%= notice %></p>
-    <div class="row">
+<div class="row">
 <div class="col-md-offset-5">
 <h1>Listing Cars</h1>
 </div>
 </div>
-<%= will_paginate %>
+
 <table class="table">
-  <thead>
+<thead>
 
-    <div class="row">
+<div class="row">
 <div class="col-md-offset-10">
-  <%= link_to 'New Car', new_car_path, :class => "btn btn-primary btn-md"%>
+<%= link_to 'New Car', new_car_path, :class => "btn btn-primary btn-md"%>
 
-  </div>
+</div>
+
+<%= will_paginate %>
 
 <div class="col-md-12">
-    <tr>
-	  <th>Photo</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Class</th>
-      <th>Price</th>
-	  <th>Status</th>
-	  <th></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<tr>
+<th>Photo</th>
+<th>Name</th>
+<th>Description</th>
+<th>Class</th>
+<th>Price</th>
+<th>Status</th>
+<th></th>
+<th colspan="3"></th>
+</tr>
+</thead>
 
-  <tbody>
+<tbody>
 
-	     <% @cars.each do |car| %>
-	<% if car.available? %>
-	
-      <tr class="success">
-	  <% else %>
-	  <tr class="danger">
-	  <% end %>
-	  <td><%= image_tag car.picture.thumb.url if car.picture? %></td>
-        <td><%= car.name %></td>
-        <td><%= car.description %></td>
-        <td><%= car.comfort_class %></td>
-        <td><%= car.price %></td>
-		<% if car.bookings.empty? %>
-		<td>Available! </td>
-		<% elsif car.available? && car.bookings.any? %>
-		<td>Available until <%= car.bookings.order(:starting).first.starting %></td>
-		<% else %>
-		<td><%= car.bookings.order(:starting).first.starting %> - <%= car.bookings.order(:starting).first.ending %></td>
-		
-		<% end %>
-		 <td><%= link_to 'Book', new_car_booking_path(car) %></td>
-        <td><%= link_to 'Show bookings', car_bookings_path(car) %></td>
-        <td><%= link_to 'Edit car', edit_car_path(car) %></td>
-        <td><%= link_to 'Delete car', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% @cars.each do |car| %>
+  <% if car.available? %>
+    <tr class="success">
+    <% else %>
+    <tr class="danger">
+    <% end %>
+    <td><%= image_tag car.picture.thumb.url if car.picture? %></td>
+    <td><%= car.name %></td>
+    <td><%= car.description %></td>
+    <td><%= car.comfort_class %></td>
+    <td><%= car.price %></td>
+    <% if car.bookings.empty? %>
+      <td>Available! </td>
+      <% elsif car.available? && car.bookings.any? %>
+      <td>Available until <%= car.bookings.order(:starting).first.starting %></td>
+      <% else %>
+      <td><%= car.bookings.order(:starting).first.starting %> - <%= car.bookings.order(:starting).first.ending %></td>
+      <% end %>
+      <td><%= link_to 'Book', new_car_booking_path(car) %></td>
+      <td><%= link_to 'Show bookings', car_bookings_path(car) %></td>
+      <td><%= link_to 'Edit car', edit_car_path(car) %></td>
+      <td><%= link_to 'Delete car', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-	
+      <% end %>
+      
+      </tbody>
+      </table>
 
-	 
-	   
-		<% end %>
-	   
-  </tbody>
-</table>
-
-<br>
-</div>
-</div>
+      <br>
+      </div>
+      </div>
 
