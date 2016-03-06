@@ -34,7 +34,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # FormUser class (with the validations)
       @user = FormUser.find @user.id
       sign_in_and_redirect @user, event: :authentication
-      flash[:success] = 'Successfully authenticated from Twitter account' if is_navigational_format?
     else
       session["devise.#{provider}_data"] = env['omniauth.auth']
       redirect_to new_user_registration_url
