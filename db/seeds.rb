@@ -41,7 +41,7 @@ Car.create!(name: 'Fiat Panda', comfort_class: 'C', description: 'Year: 2014, En
                )
   end
 end
-# Microposts
+
 cars = Car.order(:created_at).take(20)
 cars.each do |car|
   name  = Faker::Name.name
