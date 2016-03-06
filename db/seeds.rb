@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Car.create!(name: 'Honda', comfort_class: 'A', description: content)
+Car.create!(name: 'Honda', comfort_class: 'A', description: 'content')
 
-Car.create!(name: 'Honda', comfort_class: 'B', description: content)
+Car.create!(name: 'Honda', comfort_class: 'B', description: 'content')
 
-Car.create!(name: 'Honda', comfort_class: 'C', description: content, picture: File.open(Rails.root + "./app/assets/images/macewindu.jpg"))
+#Car.create!(name: 'Honda', comfort_class: 'C', description: content, picture: File.open(Rails.root + "./app/assets/images/macewindu.jpg"))
 
 4.times do
   3.times do
