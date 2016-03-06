@@ -389,6 +389,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    will_paginate (3.0.7)
     xml-simple (1.1.5)
 
 PLATFORMS
@@ -431,3 +432,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   whenever
+  will_paginate (= 3.0.7)

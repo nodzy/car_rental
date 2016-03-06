@@ -7,7 +7,7 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 
-every 2.minutes do
+every 1.day, :at => '0:00 am' do
   
   runner "Booking.remove_bookings"
  

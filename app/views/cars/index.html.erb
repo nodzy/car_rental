@@ -1,11 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Cars</h1>
-
+<%= will_paginate %>
 <table class="table">
   <thead>
 
-  <div class="row">
+    <div class="row">
+<div class="col-md-2 col-md-offset-10">
+  <%= link_to 'New Car', new_car_path, :class => "btn btn-primary btn-md"%>
+
+  </div>
+
 <div class="col-md-12">
     <tr>
 	  <th>Photo</th>
@@ -25,44 +30,31 @@
 	<% if car.available? %>
 	
       <tr class="success">
-	  
+	  <% else %>
+	  <tr class="danger">
+	  <% end %>
 	  <td><%= image_tag car.picture.thumb.url if car.picture? %></td>
         <td><%= car.name %></td>
         <td><%= car.description %></td>
         <td><%= car.comfort_class %></td>
         <td><%= car.price %></td>
-		<% if car.bookings.any? %>
-		<td>Available to <%= car.bookings.order(:starting).first.starting %></td>
-		<% else %>
+		<% if car.bookings.empty? %>
 		<td>Available! </td>
+		<% elsif car.available? && car.bookings.any? %>
+		<td>Available until <%= car.bookings.order(:starting).first.starting %></td>
+		<% else %>
+		<td><%= car.bookings.order(:starting).first.starting %> - <%= car.bookings.order(:starting).first.ending %></td>
 		
 		<% end %>
 		 <td><%= link_to 'Book', new_car_booking_path(car) %></td>
-        <td><%= link_to 'Show', car_bookings_path(car) %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show bookings', car_bookings_path(car) %></td>
+        <td><%= link_to 'Edit car', edit_car_path(car) %></td>
+        <td><%= link_to 'Destroy car', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
 	
 
-	  <% else %>
-       
-      <tr class="danger">
-	  <td><%= image_tag car.picture.thumb.url if car.picture? %></td>
-        <td><%= car.name %></td>
-        <td><%= car.description %></td>
-        <td><%= car.comfort_class %></td>
-        <td><%= car.price %></td>
-			<% if car.bookings.any? %>
-		<td><%= car.bookings.order(:starting).first.starting %> - <%= car.bookings.order(:starting).first.ending %></td>
-	<% end %>
-		 <td><%= link_to 'Book', new_car_booking_path(car), 'data-no-turbolink' => true  %></td>
-        <td><%= link_to 'Show', car_bookings_path(car) %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-	  
+	 
 	   
-	    <% end %>
 		<% end %>
 	   
   </tbody>
@@ -71,4 +63,4 @@
 <br>
 </div>
 </div>
-<%= link_to 'New Car', new_car_path %>
+

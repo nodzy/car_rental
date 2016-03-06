@@ -31,7 +31,7 @@
   </div>
   <div class="field">
     <%= f.label :place %><br>
-    <%= f.select :place, options_for_select(['A', 'B', 'C']) %>
+    <%= f.select :place, options_for_select(['New York, 55 East 52nd Street', 'Seattle, 2201 Westlake Avenue']),:prompt => 'Select One' %>
   </div>
   <%= f.hidden_field :car_id, :value => params[:car_id]%>
   <div class="actions">

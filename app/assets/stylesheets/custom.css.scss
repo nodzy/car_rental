@@ -33,6 +33,39 @@ h1, h2, h3, h4, h5, h6 {
 line-height: 1.5;
 }
 
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
 
+#signout {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.4em;
+  color: white;
+  letter-spacing: 1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
 
+.btn-primary {
+
+  font-size: 1.43em;
+  color: white!important;
+
+}
 
