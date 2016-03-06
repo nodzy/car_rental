@@ -5,7 +5,7 @@ class Booking < ActiveRecord::Base
   validates :client, presence: true, length: { maximum: 30 }
   validates :place, presence: true
   validates :phone, presence: true, length: { maximum: 15 }
-  #validate :date_range
+  validate :date_range
 
   def booking_length
     ending - starting
