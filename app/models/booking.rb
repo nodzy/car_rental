@@ -16,7 +16,10 @@ class Booking < ActiveRecord::Base
   end
 
 
-
+def uniqueness_of_date_range
+  errors.add(:from, "is not available") unless Booking.where { (from >= self.from) & (from <= self.to) }.count == 0
+  errors.add(:to, "is not available") unless Booking.where { (to >= self.from) & (to <= self.to) }.count == 0
+end
 
 
 
@@ -35,7 +38,15 @@ def date_range
 end
  
  
-
+def date_range
+ # unless Booking.where(
+        # 'car_id==? AND ((starting <= ? AND ending >= ?) OR (starting >= ? AND ending <= ?))',
+       # self.car_id, self.starting, self.starting,
+        # self.starting, self.ending
+    # ).empty?
+      # errors.add(:start, 'This car is unavaialbe on this period.')
+    # end
+# end
   
   
   
