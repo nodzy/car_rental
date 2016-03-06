@@ -6,7 +6,7 @@ class Booking < ActiveRecord::Base
  validates :how_long, inclusion: {in: 1..365, :message => "cannot be negative. Between 1 day and 1 year"}
   validates :client, presence: true, length: { maximum: 30 }
   validates :place, presence: true
-  validates :phone, presence: true, length: { maximum: 12 }
+  validates :phone, presence: true, length: { maximum: 15 }
  
   # validates :customer, presence: true
   validate :date_range

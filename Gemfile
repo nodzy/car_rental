@@ -31,6 +31,8 @@ gem 'font-awesome-sass'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem 'faker'
+gem 'rubocop', '~> 0.37.2', require: false
 gem 'net-ssh'
 gem 'bootstrap-datepicker-rails'
 gem 'whenever', require: false
