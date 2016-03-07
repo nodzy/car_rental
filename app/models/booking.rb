@@ -14,11 +14,11 @@ class Booking < ActiveRecord::Base
   private
 
   def date_range
-    unless Booking.where(
+    if Booking.where(
       'car_id = ? AND id <> ? AND ((starting <= ? AND ending >= ?) OR (starting >= ? AND ending <= ?) OR (starting <= ? AND ending >= ?))',
       car_id, id, starting, starting,
       starting, ending, ending, ending
-    ).empty?
+    )
       errors.add(:base, 'Car is unavailable, choose other dates')
        end
   end
