@@ -5,7 +5,7 @@ class Booking < ActiveRecord::Base
   validates :client, presence: true, length: { maximum: 30 }
   validates :place, presence: true
   validates :phone, presence: true, length: { maximum: 15 }
-  validate :date_range, on: :create
+  validate :date_range
 
   def booking_length
     ending - starting
@@ -15,9 +15,9 @@ class Booking < ActiveRecord::Base
 
   def date_range
     unless Booking.where(
-      'car_id = ? AND ((starting <= ? AND ending >= ?) OR (starting >= ? AND ending <= ?))',
-      car_id, starting, starting,
-      starting, ending
+      'car_id = ? AND id <> ? AND ((starting <= ? AND ending >= ?) OR (starting >= ? AND ending <= ?) OR (starting <= ? AND ending >= ?))',
+      car_id, id, starting, starting,
+      starting, ending, ending, ending
     ).empty?
       errors.add(:base, 'Car is unavailable, choose other dates')
        end

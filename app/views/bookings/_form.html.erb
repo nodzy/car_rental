@@ -10,18 +10,14 @@
       </ul>
     </div>
   <% end %>
-   <% unless params[:action] == 'edit' ||  params[:action] == 'update' %>
   <div class="field">
     <%= f.label :starting %><br>
    <%= f.text_field :starting , placeholder: "Select date"  %>
-
   </div>
   <div class="field">
     <%= f.label :ending %><br>
     <%= f.text_field :ending , placeholder: "Select date" %>
-
   </div>
-  <% end %>
   <div class="field">
     <%= f.label :client %><br>
     <%= f.text_field :client %>
