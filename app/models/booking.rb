@@ -1,13 +1,13 @@
 class Booking < ActiveRecord::Base
   belongs_to :car
 
-  validates :greater_than_one_day, inclusion: { in: 1..365, message: 'Choose date between 1 day and 1 year' }
+  validates :must_be_greater_than_one_day, inclusion: { in: 1..365, message: '- Choose between 1 day and 1 year'}
   validates :client, presence: true, length: { maximum: 30 }
   validates :place, presence: true
   validates :phone, presence: true, length: { maximum: 15 }
   validate :date_range
 
-  def greater_than_one_day
+  def must_be_greater_than_one_day
     ending - starting
  end
 
