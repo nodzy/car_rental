@@ -23,6 +23,7 @@ class Booking < ActiveRecord::Base
        end
   end
 
+  
   def self.remove_bookings
     where { ending < Date.today }.destroy_all if where { ending < Date.today }.any?
     end
