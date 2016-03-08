@@ -8,10 +8,7 @@ class Car < ActiveRecord::Base
   validate  :picture_size
 
   def available?
-    if bookings.empty? || bookings.any? && bookings.order(:starting).first.starting > Date.tomorrow
-      return true
-    else return false
-     end
+    bookings.empty? || bookings.map(&:starting).min > Date.tomorrow
   end
 
   private

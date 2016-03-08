@@ -45,9 +45,9 @@
     <% if car.bookings.empty? %>
       <td>Available! </td>
       <% elsif car.available? && car.bookings.any? %>
-      <td>Available until <%= car.bookings.order(:starting).first.starting.strftime("%d/%m/%y") %></td>
+      <td>Available until <%= car.bookings.map(&:starting).min.strftime("%d/%m/%y") %></td>
       <% else %>
-      <td><%= car.bookings.order(:starting).first.starting.strftime("%d/%m/%y") %> - <%= car.bookings.order(:starting).first.ending.strftime("%d/%m/%y") %></td>
+      <td><%= car.bookings.map(&:starting).min.strftime("%d/%m/%y") %> - <%= car.bookings.order(:starting).first.ending.strftime("%d/%m/%y") %></td>
       <% end %>
       <td><%= link_to 'Book', new_car_booking_path(car) %></td>
       <td><%= link_to 'Show bookings', car_bookings_path(car) %></td>
